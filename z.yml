@@ -1,0 +1,13 @@
+---
+description: Driver for Murata LBEE5KL1DX based chips
+fullname: lib.murata.lbee5kl1dx
+info:
+    chip_manufacturer: Murata
+    chip_name: LBEE5KL1DX
+    name: Wi-Fi Driver
+    type: Connectivity
+keywords:
+- wireless
+- wifi
+title: Murata LBEE5KL1DX driver
+...
