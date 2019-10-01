@@ -57,6 +57,7 @@ typedef LWIP_ERR_T err_t;
 typedef s8_t err_t;
 #endif /* LWIP_ERR_T*/
 
+#undef ERR_OK
 /** Definitions for error constants. */
 typedef enum {
 /** No error, everything OK. */
