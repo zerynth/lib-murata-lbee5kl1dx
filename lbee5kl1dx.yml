@@ -6,7 +6,9 @@ config:
     # enable sockets
     ZERYNTH_SOCKETS: true
     # configure zerynth sockets to use LWIP from this module
-    ZERYNTH_EXTERNAL_LWIP: true
+    ZERYNTH_SOCKETS_EXTERNAL_TCP_STACK: true
+    # use zerynth pynative functions for sockets
+    ZERYNTH_SOCKETS_PYNATIVE: true
 options:
     ZERYNTH_SSL:
         help: >

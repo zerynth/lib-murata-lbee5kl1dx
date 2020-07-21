@@ -69,7 +69,8 @@ To enable it and allow the creation of TLS sockets using the Zerynth ``ssl`` mod
         "csrc/WICED_port/WICED/RTOS/Zerynth/WWD/wwd_rtos.c",
         "csrc/WICED_port/WICED/network/LwIP/WWD/Zerynth/sys_arch.c",
         "csrc/WICED_port/zerynth_host_platform.c",
-        "#csrc/misc/zstdlib.c",
+        "#csrc/misc/zstdlib.c",        
+        "#csrc/hwcrypto/*",
         "#csrc/zsockets/*",
 #-if ZERYNTH_SSL
         "#csrc/tls/mbedtls/library/*",
@@ -108,6 +109,8 @@ To enable it and allow the creation of TLS sockets using the Zerynth ``ssl`` mod
         "-I.../csrc/resources",
         "-I.../csrc/inc",
         "-I#csrc/zsockets",
+        "-I#csrc/hwcrypto",
+        "-I#csrc/misc",
 #-if ZERYNTH_SSL
         "-I#csrc/tls/mbedtls/include",
 #-endif
@@ -166,67 +169,62 @@ def link_info():
 def set_link_info(ip,mask,gw,dns):
     pass
 
-@native_c("lbee_resolve", [])
+@native_c("py_net_resolve",[])
 def gethostbyname(hostname):
     pass
 
-@native_c("lbee_socket", [])
+@native_c("py_net_socket",[])
 def socket(family,type,proto):
     pass
 
-@native_c("lbee_setsockopt", [])
+@native_c("py_net_setsockopt",[])
 def setsockopt(sock,level,optname,value):
     pass
 
-@native_c("lbee_close", [])
+@native_c("py_net_close",[])
 def close(sock):
     pass
 
-@native_c("lbee_connect", [])
+@native_c("py_net_connect",["csrc/*"])
 def connect(sock,addr):
     pass
 
-@native_c("lbee_select",[])
+@native_c("py_net_select",[])
 def select(rlist,wist,xlist,timeout):
     pass
 
-@native_c("lbee_send", [])
+@native_c("py_net_send",[])
 def send(sock,buf,flags=0):
     pass
 
-@native_c("lbee_send_all", [])
+@native_c("py_net_send_all",[])
 def sendall(sock,buf,flags=0):
     pass
 
-@native_c("lbee_recv_into", [])
+@native_c("py_net_recv_into",[])
 def recv_into(sock,buf,bufsize,flags=0,ofs=0):
     pass
 
-@native_c("lbee_recvfrom_into", [])
+@native_c("py_net_recvfrom_into",[])
 def recvfrom_into(sock,buf,bufsize,flags=0):
     pass
 
-@native_c("lbee_sendto", [])
+@native_c("py_net_sendto",[])
 def sendto(sock,buf,addr,flags=0):
     pass
 
-@native_c("lbee_bind", [])
+@native_c("py_net_bind",[])
 def bind(sock,addr):
     pass
 
-@native_c("lbee_listen", [])
+@native_c("py_net_listen",[])
 def listen(sock,maxlog=2):
     pass
 
-@native_c("lbee_accept", [])
+@native_c("py_net_accept",[])
 def accept(sock):
     pass
 
-#-if ZERYNTH_SSL
-@native_c("lbee_secure_socket", [], [])
+@native_c("py_secure_socket", [], [])
 def secure_socket(family, type, proto, ctx):
     pass
-#-else
-def secure_socket(family, type, proto, ctx):
-    raise UnsupportedError
-#-endif
